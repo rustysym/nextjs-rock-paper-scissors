@@ -1,5 +1,5 @@
 "use client";
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Rock from "@/components/rock";
 import Paper from "@/components/paper";
 import Scissors from "@/components/scissors";
@@ -10,12 +10,8 @@ function GameContainer({ selection }) {
   const { onSelect, houseSelection, result, show, playAgain } =
     useContext(GameContext);
   const [animate, setAnimate] = useState(false);
-  const shouldLog = useRef(true);
   useEffect(() => {
-    if(shouldLog.current){
       onSelect();
-      shouldLog.current = false;
-    }
   }, [houseSelection]);
   useEffect(() => {
     setTimeout(() => {
