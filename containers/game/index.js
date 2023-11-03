@@ -1,5 +1,5 @@
 "use client";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import Rock from "@/components/rock";
 import Paper from "@/components/paper";
 import Scissors from "@/components/scissors";
@@ -10,10 +10,12 @@ function GameContainer({ selection }) {
   const { onSelect, houseSelection, result, show, playAgain } =
     useContext(GameContext);
   const [animate, setAnimate] = useState(false);
+  const initialized = useRef(false);
   useEffect(() => {
+    if (!initialized.current) {
+      initialized.current = true;
       onSelect();
-  }, [houseSelection]);
-  useEffect(() => {
+    }
     setTimeout(() => {
       setAnimate(true);
     }, 3500);
